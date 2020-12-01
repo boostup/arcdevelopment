@@ -20,6 +20,7 @@ import { ReactComponent as WebsitesIcon } from "../assets/websitesIcon.svg";
 import repeatingBackground from "../assets/repeatingBackground.svg";
 import infoBackground from "../assets/infoBackground.svg";
 import CallToAction from "./ui/CallToAction";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -128,7 +129,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LandingPage() {
+export default function LandingPage({
+  value,
+  setValue,
+  selectedIndex,
+  setSelectedIndex,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -159,7 +165,13 @@ export default function LandingPage() {
               className={classes.buttonsContainer}
             >
               <Grid item>
-                <Button className={classes.estimateButton} variant="contained">
+                <Button
+                  className={classes.estimateButton}
+                  variant="contained"
+                  component={Link}
+                  to="/estimate"
+                  onClick={() => setValue(false)}
+                >
                   Free Estimate
                 </Button>
               </Grid>
@@ -167,6 +179,9 @@ export default function LandingPage() {
                 <Button
                   variant="outlined"
                   className={classes.learnMoreButtonHero}
+                  component={Link}
+                  to="/revolution"
+                  onClick={() => setValue(2)}
                 >
                   Learn More
                   <ButtonArrow
@@ -208,7 +223,16 @@ export default function LandingPage() {
               Complete digital solutions, from investigation to{" "}
               <span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button variant="outlined" className={classes.learnMoreButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnMoreButton}
+              component={Link}
+              to="/customsoftware"
+              onClick={() => {
+                setValue(1);
+                setSelectedIndex(1);
+              }}
+            >
               Learn More
               <ButtonArrow
                 width={15}
@@ -247,7 +271,16 @@ export default function LandingPage() {
               Integrate your web experience or create a standalone app
               {matchesSM ? " " : <br />}with either mobile platform.
             </Typography>
-            <Button variant="outlined" className={classes.learnMoreButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnMoreButton}
+              component={Link}
+              to="/mobileapps"
+              onClick={() => {
+                setValue(1);
+                setSelectedIndex(2);
+              }}
+            >
               Learn More
               <ButtonArrow
                 width={15}
@@ -291,7 +324,16 @@ export default function LandingPage() {
             <Typography variant="subtitle1">
               Optimized for Search Engines, built for speed.
             </Typography>
-            <Button variant="outlined" className={classes.learnMoreButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnMoreButton}
+              component={Link}
+              to="/websites"
+              onClick={() => {
+                setValue(1);
+                setSelectedIndex(3);
+              }}
+            >
               Learn More
               <ButtonArrow
                 width={15}
@@ -335,6 +377,11 @@ export default function LandingPage() {
                   <Button
                     variant="outlined"
                     className={classes.learnMoreButtonHero}
+                    component={Link}
+                    to="/revolution"
+                    onClick={() => {
+                      setValue(2);
+                    }}
                   >
                     Learn More
                     <ButtonArrow
@@ -358,23 +405,26 @@ export default function LandingPage() {
           direction="row"
           style={{ height: "80em" }}
           alignItems="center"
+          className={classes.infoBackground}
         >
           <Grid
             item
             container
             style={{
-              position: "absolute",
               textAlign: matchesXS ? "center" : "inherit",
             }}
             direction={matchesXS ? "column" : "row"}
-            spacing={matchesXS ? 10 : 0}
           >
             <Grid
               sm
               item
               style={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em" }}
             >
-              <Grid container direction="column">
+              <Grid
+                container
+                direction="column"
+                style={{ marginBottom: matchesXS ? "10em" : 0 }}
+              >
                 <Typography variant="h2" style={{ color: "white" }}>
                   About Us
                 </Typography>
@@ -384,6 +434,11 @@ export default function LandingPage() {
                     variant="outlined"
                     className={classes.learnMoreButton}
                     style={{ color: "white", borderColor: "white" }}
+                    component={Link}
+                    to="/about"
+                    onClick={() => {
+                      setValue(3);
+                    }}
                   >
                     Learn More
                     <ButtonArrow
@@ -419,6 +474,11 @@ export default function LandingPage() {
                     variant="outlined"
                     className={classes.learnMoreButton}
                     style={{ color: "white", borderColor: "white" }}
+                    component={Link}
+                    to="/contact"
+                    onClick={() => {
+                      setValue(4);
+                    }}
                   >
                     Learn More
                     <ButtonArrow
@@ -432,12 +492,14 @@ export default function LandingPage() {
               </Grid>
             </Grid>
           </Grid>
-          <div className={classes.infoBackground}></div>
         </Grid>
       </Grid>
       {/* CALL TO ACTION SECTION */}
       <Grid item>
-        <CallToAction />
+        <CallToAction
+          {...{ value, setValue }}
+          {...{ selectedIndex, setSelectedIndex }}
+        />
       </Grid>
     </Grid>
   );

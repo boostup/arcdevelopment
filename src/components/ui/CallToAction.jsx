@@ -5,6 +5,7 @@ import ButtonArrow from "./ButtonArrow";
 
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   learnMoreButton: {
@@ -38,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.5rem",
     marginRight: "5em",
     marginLeft: "2em",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
     [theme.breakpoints.down("sm")]: {
       marginRight: 0,
       marginLeft: 0,
@@ -45,7 +49,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CallToAction() {
+export default function CallToAction({
+  value,
+  setValue,
+  selectedIndex,
+  setSelectedIndex,
+}) {
   const theme = useTheme();
   const classes = useStyles();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
@@ -75,7 +84,15 @@ export default function CallToAction() {
               Take advantage of the 21st Century.
             </Typography>
             <Grid container item justify={matchesSM ? "center" : undefined}>
-              <Button variant="outlined" className={classes.learnMoreButton}>
+              <Button
+                variant="outlined"
+                className={classes.learnMoreButton}
+                component={Link}
+                to="/revolution"
+                onClick={() => {
+                  setValue(2);
+                }}
+              >
                 <span style={{ marginRight: 5 }}>Learn More</span>
                 <ButtonArrow
                   width={15}
@@ -88,7 +105,15 @@ export default function CallToAction() {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant="contained" className={classes.estimateButton}>
+        <Button
+          variant="contained"
+          className={classes.estimateButton}
+          component={Link}
+          to="/estimate"
+          onClick={() => {
+            setValue(5);
+          }}
+        >
           Free Estimate
         </Button>
       </Grid>

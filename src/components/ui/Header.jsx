@@ -238,6 +238,9 @@ export default function Header({
         className={classes.button}
         component={Link}
         to="/estimate"
+        onClick={() => {
+          setValue(false);
+        }}
       >
         Free Estimate
       </Button>
@@ -315,7 +318,7 @@ export default function Header({
             }}
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              setValue(false);
             }}
           >
             <ListItemText disableTypography className={classes.drawerItem}>
@@ -347,6 +350,9 @@ export default function Header({
               setSelectedIndex(route.selectedOptionIndex);
             }
           }
+          break;
+        case "/estimate":
+          setValue(false);
           break;
 
         default:

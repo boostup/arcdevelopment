@@ -18,7 +18,12 @@ function App() {
           {...{ selectedIndex, setSelectedIndex }}
         />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/">
+            <LandingPage
+              {...{ value, setValue }}
+              {...{ selectedIndex, setSelectedIndex }}
+            />
+          </Route>
           <Route exact path="/services" component={() => "Services"} />
           <Route exact path="/customsoftware" component={() => "Custom Soft"} />
           <Route exact path="/mobileapps" component={() => "MobileApps"} />
