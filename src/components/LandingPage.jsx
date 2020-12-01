@@ -1,9 +1,20 @@
-import { Button, Grid, makeStyles, Typography } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  makeStyles,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import React from "react";
 import Lottie from "react-lottie";
 
 import animationData from "../animations/landinganimation/data";
 import ButtonArrow from "../components/ui/ButtonArrow";
+
+import { ReactComponent as CustomSoftwareIcon } from "../assets/customSoftwareIcon.svg";
+import { ReactComponent as MobileIcon } from "../assets/mobileIcon.svg";
+import { ReactComponent as WebsitesIcon } from "../assets/websitesIcon.svg";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -45,14 +56,8 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.secondary.light,
     },
   },
-  learnMoreButton: {
-    borderColor: theme.palette.common.blue,
-    color: theme.palette.common.blue,
-    borderWidth: 2,
-    textTransform: "none",
-    borderRadius: 50,
-    fontFamily: "Roboto",
-    fontWeight: "bold",
+  learnMoreButtonHero: {
+    ...theme.typography.learnMoreButton,
     fontSize: "0.9rem",
     height: 45,
     width: 145,
@@ -61,10 +66,38 @@ const useStyles = makeStyles((theme) => ({
     fill: theme.palette.common.blue,
     marginLeft: 10,
   },
+  servicesSection: {
+    marginTop: "12em",
+    [theme.breakpoints.down("sm")]: {
+      padding: 25,
+    },
+  },
+  learnMoreButton: {
+    ...theme.typography.learnMoreButton,
+    fontSize: "0.7rem",
+    height: 35,
+    padding: 5,
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "2em",
+    },
+  },
+  subtitle: { marginBottom: "1em" },
+  specialText: {
+    fontFamily: "Pacifico",
+    color: theme.palette.common.orange,
+  },
+  icon: {
+    marginLeft: "2em",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "0em",
+    },
+  },
 }));
 
 export default function LandingPage() {
   const classes = useStyles();
+  const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -77,6 +110,8 @@ export default function LandingPage() {
   return (
     <Grid container direction="column" className={classes.mainContainer}>
       <Grid item>
+        {" "}
+        {/** HERO SECTION */}
         <Grid container direction="row" justify="flex-end" alignItems="center">
           <Grid item sm className={classes.hero}>
             <Typography align="center" variant="h2">
@@ -94,7 +129,10 @@ export default function LandingPage() {
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learnMoreButton}>
+                <Button
+                  variant="outlined"
+                  className={classes.learnMoreButtonHero}
+                >
                   Learn More
                   <ButtonArrow
                     width={15}
@@ -107,6 +145,113 @@ export default function LandingPage() {
           </Grid>
           <Grid item sm className={classes.animation}>
             <Lottie options={defaultOptions} height={"100%"} width={"100%"} />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        {" "}
+        {/** SERVICES SECTION : Custom software */}
+        <Grid
+          container
+          direction="row"
+          className={classes.servicesSection}
+          justify={matchesSM ? "center" : undefined}
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: matchesSM ? 0 : "5em",
+              textAlign: matchesSM ? "center" : undefined,
+            }}
+          >
+            <Typography variant="h4">Custom Software Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Save Energy. Save Time. Save Money.
+            </Typography>
+            <Typography variant="subtitle1">
+              Complete digital solutions, from investigation to{" "}
+              <span className={classes.specialText}>celebration.</span>
+            </Typography>
+            <Button variant="outlined" className={classes.learnMoreButton}>
+              Learn More
+              <ButtonArrow width={15} height={15} className={classes.arrow} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <CustomSoftwareIcon className={classes.icon} />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid item>
+        {" "}
+        {/** SERVICES SECTION : Mobile apps development*/}
+        <Grid
+          container
+          direction="row"
+          className={classes.servicesSection}
+          justify={matchesSM ? "center" : "flex-end"}
+        >
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? "center" : undefined,
+            }}
+          >
+            <Typography variant="h4">iOS/Android App Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app
+              {matchesSM ? " " : <br />}with either mobile platform.
+            </Typography>
+            <Button variant="outlined" className={classes.learnMoreButton}>
+              Learn More
+              <ButtonArrow width={15} height={15} className={classes.arrow} />
+            </Button>
+          </Grid>
+          <Grid
+            item
+            style={{
+              marginRight: matchesSM ? 0 : "5em",
+            }}
+          >
+            <MobileIcon className={classes.icon} />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid item>
+        {" "}
+        {/** SERVICES SECTION : Website development */}
+        <Grid
+          container
+          direction="row"
+          className={classes.servicesSection}
+          justify={matchesSM ? "center" : undefined}
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: matchesSM ? 0 : "5em",
+              textAlign: matchesSM ? "center" : undefined,
+            }}
+          >
+            <Typography variant="h4">Website Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Reach More. Discover More. Sell More.
+            </Typography>
+            <Typography variant="subtitle1">
+              Optimized for Search Engines, built for speed.
+            </Typography>
+            <Button variant="outlined" className={classes.learnMoreButton}>
+              Learn More
+              <ButtonArrow width={15} height={15} className={classes.arrow} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <WebsitesIcon className={classes.icon} />
           </Grid>
         </Grid>
       </Grid>
