@@ -2,14 +2,28 @@ import { ThemeProvider } from "@material-ui/core";
 import { theme } from "./ui/theme";
 import Header from "./ui/Header";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Footer from "./ui/Footer";
+import { useState } from "react";
+import LandingPage from "./LandingPage";
 
 function App() {
+  const [value, setValue] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        <Header
+          {...{ value, setValue }}
+          {...{ selectedIndex, setSelectedIndex }}
+        />
         <Switch>
-          <Route exact path="/" component={() => "Home"} />
+          <Route exact path="/">
+            <LandingPage
+              {...{ value, setValue }}
+              {...{ selectedIndex, setSelectedIndex }}
+            />
+          </Route>
           <Route exact path="/services" component={() => "Services"} />
           <Route exact path="/customsoftware" component={() => "Custom Soft"} />
           <Route exact path="/mobileapps" component={() => "MobileApps"} />
@@ -19,6 +33,10 @@ function App() {
           <Route exact path="/contact" component={() => "Contact"} />
           <Route exact path="/estimate" component={() => "Estimate"} />
         </Switch>
+        <Footer
+          {...{ value, setValue }}
+          {...{ selectedIndex, setSelectedIndex }}
+        />
       </BrowserRouter>
     </ThemeProvider>
   );
