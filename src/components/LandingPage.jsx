@@ -18,6 +18,7 @@ import { ReactComponent as CustomSoftwareIcon } from "../assets/customSoftwareIc
 import { ReactComponent as MobileIcon } from "../assets/mobileIcon.svg";
 import { ReactComponent as WebsitesIcon } from "../assets/websitesIcon.svg";
 import repeatingBackground from "../assets/repeatingBackground.svg";
+import infoBackground from "../assets/infoBackground.svg";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -66,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     width: 145,
   },
   arrow: {
-    fill: theme.palette.common.blue,
     marginLeft: 10,
   },
   servicesSection: {
@@ -117,12 +117,21 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: "100%",
+    width: "100%",
+  },
 }));
 
 export default function LandingPage() {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -162,6 +171,7 @@ export default function LandingPage() {
                   <ButtonArrow
                     width={15}
                     height={15}
+                    fill={theme.palette.common.blue}
                     className={classes.arrow}
                   />
                 </Button>
@@ -199,7 +209,12 @@ export default function LandingPage() {
             </Typography>
             <Button variant="outlined" className={classes.learnMoreButton}>
               Learn More
-              <ButtonArrow width={15} height={15} className={classes.arrow} />
+              <ButtonArrow
+                width={15}
+                height={15}
+                fill={theme.palette.common.blue}
+                className={classes.arrow}
+              />
             </Button>
           </Grid>
           <Grid item>
@@ -233,7 +248,12 @@ export default function LandingPage() {
             </Typography>
             <Button variant="outlined" className={classes.learnMoreButton}>
               Learn More
-              <ButtonArrow width={15} height={15} className={classes.arrow} />
+              <ButtonArrow
+                width={15}
+                height={15}
+                fill={theme.palette.common.blue}
+                className={classes.arrow}
+              />
             </Button>
           </Grid>
           <Grid
@@ -272,7 +292,12 @@ export default function LandingPage() {
             </Typography>
             <Button variant="outlined" className={classes.learnMoreButton}>
               Learn More
-              <ButtonArrow width={15} height={15} className={classes.arrow} />
+              <ButtonArrow
+                width={15}
+                height={15}
+                fill={theme.palette.common.blue}
+                className={classes.arrow}
+              />
             </Button>
           </Grid>
           <Grid item>
@@ -314,6 +339,7 @@ export default function LandingPage() {
                     <ButtonArrow
                       width={15}
                       height={15}
+                      fill={theme.palette.common.blue}
                       className={classes.arrow}
                     />
                   </Button>
@@ -322,6 +348,90 @@ export default function LandingPage() {
             </CardContent>
           </Card>
           <div className={classes.revolutionBackground}></div>
+        </Grid>
+      </Grid>
+      {/* INFORMATION SECTION */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          style={{ height: "80em" }}
+          alignItems="center"
+        >
+          <Grid
+            item
+            container
+            style={{
+              position: "absolute",
+              textAlign: matchesXS ? "center" : "inherit",
+            }}
+            direction={matchesXS ? "column" : "row"}
+            spacing={matchesXS ? 10 : 0}
+          >
+            <Grid
+              sm
+              item
+              style={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em" }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: "white" }}>
+                  About Us
+                </Typography>
+                <Typography variant="subtitle2">Let's get personal.</Typography>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    className={classes.learnMoreButton}
+                    style={{ color: "white", borderColor: "white" }}
+                  >
+                    Learn More
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      className={classes.arrow}
+                      fill="white"
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid
+              sm
+              item
+              style={{
+                marginRight: matchesXS ? 0 : matchesSM ? "2em" : "5em",
+                textAlign: matchesXS ? "center" : "right",
+              }}
+            >
+              <Grid container direction="column">
+                <Typography variant="h2" style={{ color: "white" }}>
+                  Contact Us
+                </Typography>
+                <Typography variant="subtitle2">
+                  Say hello!{" "}
+                  <span role="img" aria-label="waving hand">
+                    👋
+                  </span>
+                </Typography>
+                <Grid item>
+                  <Button
+                    variant="outlined"
+                    className={classes.learnMoreButton}
+                    style={{ color: "white", borderColor: "white" }}
+                  >
+                    Learn More
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      className={classes.arrow}
+                      fill="white"
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+          <div className={classes.infoBackground}></div>
         </Grid>
       </Grid>
     </Grid>

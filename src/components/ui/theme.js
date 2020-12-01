@@ -53,6 +53,11 @@ export const theme = createMuiTheme({
       color: arcGrey,
       fontWeight: 300,
     },
+    subtitle2: {
+      fontSize: "1.25rem",
+      color: "white",
+      fontWeight: 300,
+    },
     learnMoreButton: {
       borderColor: arcBlue,
       color: arcBlue,
