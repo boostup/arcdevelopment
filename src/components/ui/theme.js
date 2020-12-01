@@ -1,6 +1,4 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
-import green from "@material-ui/core/colors/green";
 
 const arcBlue = "#0B72B9";
 const arcOrange = "#FFBA60";
@@ -30,6 +28,13 @@ export const theme = createMuiTheme({
       fontSize: "1rem",
       textTransform: "none",
       color: "white",
+    },
+    h2: {
+      fontFamily: "Raleway",
+      fontWeight: 700,
+      fontSize: "2.5rem",
+      color: arcBlue,
+      lineHeight: 1.5,
     },
   },
 });
