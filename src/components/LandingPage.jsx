@@ -1,5 +1,7 @@
 import {
   Button,
+  Card,
+  CardContent,
   Grid,
   makeStyles,
   Typography,
@@ -15,6 +17,7 @@ import ButtonArrow from "../components/ui/ButtonArrow";
 import { ReactComponent as CustomSoftwareIcon } from "../assets/customSoftwareIcon.svg";
 import { ReactComponent as MobileIcon } from "../assets/mobileIcon.svg";
 import { ReactComponent as WebsitesIcon } from "../assets/websitesIcon.svg";
+import repeatingBackground from "../assets/repeatingBackground.svg";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -90,6 +93,28 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "2em",
     [theme.breakpoints.down("xs")]: {
       marginLeft: "0em",
+    },
+  },
+  revolutionBackground: {
+    backgroundImage: `url(${repeatingBackground})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: "100%",
+    width: "100%",
+  },
+  revolutionCard: {
+    position: "absolute",
+    boxShadow: theme.shadows[10],
+    borderRadius: 15,
+    padding: "10em",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "8em",
+      paddingBottom: "8em",
+      paddingLeft: 0,
+      paddingRight: 0,
+      borderRadius: 0,
+      width: "100%",
     },
   },
 }));
@@ -253,6 +278,50 @@ export default function LandingPage() {
           <Grid item>
             <WebsitesIcon className={classes.icon} />
           </Grid>
+        </Grid>
+      </Grid>
+
+      {/* REVOLUTION SECTION */}
+      <Grid item>
+        <Grid
+          container
+          alignItems="center"
+          justify="center"
+          style={{ height: "100em", marginTop: "12em" }}
+        >
+          <Card className={classes.revolutionCard}>
+            <CardContent>
+              <Grid
+                container
+                direction="column"
+                style={{ textAlign: "center" }}
+              >
+                <Grid item>
+                  <Typography variant="h3" gutterBottom>
+                    The Revolution
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="subtitle1">
+                    Visionary insights coupled with cutting-edge technology is a
+                    receipe for revolution.
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    className={classes.learnMoreButtonHero}
+                  >
+                    Learn More
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      className={classes.arrow}
+                    />
+                  </Button>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+          <div className={classes.revolutionBackground}></div>
         </Grid>
       </Grid>
     </Grid>
