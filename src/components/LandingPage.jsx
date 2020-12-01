@@ -19,6 +19,7 @@ import { ReactComponent as MobileIcon } from "../assets/mobileIcon.svg";
 import { ReactComponent as WebsitesIcon } from "../assets/websitesIcon.svg";
 import repeatingBackground from "../assets/repeatingBackground.svg";
 import infoBackground from "../assets/infoBackground.svg";
+import CallToAction from "./ui/CallToAction";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -433,6 +434,10 @@ export default function LandingPage() {
           </Grid>
           <div className={classes.infoBackground}></div>
         </Grid>
+      </Grid>
+      {/* CALL TO ACTION SECTION */}
+      <Grid item>
+        <CallToAction />
       </Grid>
     </Grid>
   );
