@@ -22,7 +22,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 import { Link } from "react-router-dom";
 
-import logo from "../../assets/logo.svg";
+import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -121,16 +121,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+export default function Header({
+  value,
+  setValue,
+  selectedIndex,
+  setSelectedIndex,
+}) {
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
 
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const routes = useMemo(
@@ -360,7 +364,7 @@ export default function Header() {
               onClick={() => setValue(0)}
               disableRipple
             >
-              <img src={logo} alt="company logo" className={classes.logo} />
+              <Logo className={classes.logo} />
             </Button>
             {matches ? drawer : tabs}
           </Toolbar>
